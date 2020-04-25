@@ -4,14 +4,16 @@ using Microsoft.DSX.ProjectTemplate.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Microsoft.DSX.ProjectTemplate.Data.Migrations
 {
     [DbContext(typeof(ProjectTemplateDbContext))]
-    partial class ProjectTemplateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200424192630_SeedLibraryValues")]
+    partial class SeedLibraryValues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

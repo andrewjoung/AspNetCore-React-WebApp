@@ -118,6 +118,90 @@ namespace Microsoft.DSX.ProjectTemplate.Data
                         IsActive = true
                     }
                 );
+
+            /*
+            modelBuilder.Entity<Library>()
+                .HasData(
+                    new Library()
+                    {
+                        Id = 1,
+                        Name = "Bellevue Library",
+                        Address = new Address()
+                        {
+                            LocationAddressLine1 = "1111 110th Ave NE",
+                            LocationStateProvince = "WA",
+                            LocationCity = "Bellevue",
+                            LocationZipCode = "98004",
+                            LocationCountry = "US"
+                        }
+                    },
+                    new Library()
+                    {
+                        Id = 2,
+                        Name = "Newcastle Library",
+                        Address = new Address()
+                        {
+                            LocationAddressLine1 = "12901 Newcastle Way",
+                            LocationStateProvince = "WA",
+                            LocationCity = "Newcastle",
+                            LocationZipCode = "98056",
+                            LocationCountry = "US"
+                        }
+                    },
+                    new Library()
+                    {
+                        Id = 3,
+                        Name = "Suzzallo Library",
+                        Address = new Address()
+                        {
+                            LocationAddressLine1 = "4000 15th Ave NE",
+                            LocationStateProvince = "WA",
+                            LocationCity = "Seattle",
+                            LocationZipCode = "98195",
+                            LocationCountry = "US"
+                        }
+                    }
+                );
+                */
+            modelBuilder.Entity<Library>(b =>
+            {
+                b.HasData(
+                    new Library()
+                    {
+                        Id = 1,
+                        Name = "Bellevue Library"
+                    }
+                );
+                b.OwnsOne(e => e.Address).HasData(new
+                {
+                    LibraryId = 1,
+                    LocationAddressLine1 = "1111 110th Ave NE",
+                    LocationStateProvince = "WA",
+                    LocationCity = "Bellevue",
+                    LocationZipCode = "98004",
+                    LocationCountry = "US"
+                });
+            });
+
+            modelBuilder.Entity<Library>(b =>
+            {
+                b.HasData(
+                    new Library()
+                    {
+                        Id = 2,
+                        Name = "Newcastle Library"
+                    }
+                );
+                b.OwnsOne(e => e.Address).HasData(new
+                {
+                    LibraryId = 2,
+                    LocationAddressLine1 = "12901 Newcastle Way",
+                    LocationStateProvince = "WA",
+                    LocationCity = "Newcastle",
+                    LocationZipCode = "98056",
+                    LocationCountry = "US"
+                });
+            });
         }
 
         private void ConfigureIndexes(ModelBuilder modelBuilder)

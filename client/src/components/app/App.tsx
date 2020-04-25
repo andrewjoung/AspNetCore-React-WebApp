@@ -17,6 +17,7 @@ import msftLogo from '../../static/msftLogo.png';
 import About from '../about/About';
 import Home from '../home/Home';
 import Groups from '../groups/Groups';
+import Libraries from '../libraries/Libraries';
 import styles from './App.module.scss';
 
 initializeIcons();
@@ -53,6 +54,11 @@ const App: React.FC = () => {
                         name: 'Groups',
                         url: '/groups/',
                         key: 'groups'
+                      },
+                      {
+                        name: "Libraries",
+                        url: '/libraries/',
+                        key: 'libraries'
                       }
                     ]
                   }
@@ -63,6 +69,7 @@ const App: React.FC = () => {
               <Route path="/" exact component={Home} />
               <Route path="/about/" component={About} />
               <Route path="/groups/" component={Groups} />
+              <Route path="/libraries/" component={Libraries} />
             </div>
           </div>
         </div>
