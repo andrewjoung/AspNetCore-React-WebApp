@@ -33,6 +33,12 @@ namespace Microsoft.DSX.ProjectTemplate.API.Controllers
             return Ok(await Mediator.Send(new CreateLibraryCommand() { Library = dto }));
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<LibraryDto>> DeleteLibrary([FromRoute] int id)
+        {
+            return Ok(await Mediator.Send(new DeleteLibraryCommand() { LibraryId = id }));
+        }
+
 
     }
 }
