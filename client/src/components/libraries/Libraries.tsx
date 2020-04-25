@@ -8,7 +8,7 @@ import {
     PrimaryButton,
     DefaultButton
 } from 'office-ui-fabric-react';
-import { ILibraryDto, ApiClient, LibraryDto } from '../../generated/backend';
+import { ILibraryDto, ApiClient, LibraryDto, Address } from '../../generated/backend';
 import LibraryForm from './LibraryForm';
 
 const Libraries: React.FC = () => {
@@ -45,16 +45,19 @@ const Libraries: React.FC = () => {
 
     const handleCreateLibrary = async(library: ILibraryDto) => {
 
-       let libDto = LibraryDto.fromJS(library);
+        
+            let libDto = LibraryDto.fromJS(library);
 
-        const result = await new ApiClient(
-            process.env.REACT_APP_API_BASE
-        ).libraries_CreateLibrary(libDto).then((response) => {
-            console.log(response);
-            setData({libraries: [...data.libraries, library], isFetching: false});
-        }).catch((error) => {
-            console.log("Error:" + error);
-        });
+            const result = await new ApiClient(
+                process.env.REACT_APP_API_BASE
+            ).libraries_CreateLibrary(libDto).then(res => {
+                console.log(res);
+                //return res
+                setData({libraries: [... data.libraries, libDto], isFetching: false});
+                //return res;
+            }).catch(err => {
+                return err;
+            })
 
     }
 

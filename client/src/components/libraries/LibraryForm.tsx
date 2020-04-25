@@ -39,54 +39,104 @@ const LibraryForm: React.FC<IProps> = ({setAddMode, handleCreateLibrary}) => {
         setLibrary({...library, [name]: value})
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         console.log("Submitted");
         console.log(library);
 
-        let addressItem = {
-            locationAddressLine1: library.LocationAddressLine1,
-            locationAddressLine2: library.LocationAddressLine2,
-            locationCity: library.LocationCity,
-            locationStateProvince: library.LocationStateProvince,
-            locationZipCode: library.LocationZipCode,
-            locationCountry: library.LocationCountry
+        if(library.Name !== '' && library.LocationAddressLine1 !== '' && library.LocationCity !== ''
+            && library.LocationCountry !== '' && library.LocationZipCode !== '') {
+
+                let addressItem = {
+                    locationAddressLine1: library.LocationAddressLine1,
+                    locationAddressLine2: library.LocationAddressLine2,
+                    locationCity: library.LocationCity,
+                    locationStateProvince: library.LocationStateProvince,
+                    locationZipCode: library.LocationZipCode,
+                    locationCountry: library.LocationCountry
+                }
+        
+                let newAddress = Address.fromJS(addressItem);
+                console.log("New address: ");
+                console.log(newAddress);
+        
+                let libraryItem:ILibraryDto = {
+                    id: Math.floor(Math.random() * 10000),
+                    name: library.Name,
+                    address: newAddress,
+                    createdDate: new Date(),
+                    updatedDate: new Date()
+                }
+        
+                //console.log("Library item " + libraryItem.name);
+        
+                let newLibrary = LibraryDto.fromJS(libraryItem);
+        
+                console.log(newLibrary);
+                
+                
+                handleCreateLibrary(newLibrary);
+
+            
+                setAddMode(false);
+        } else {
+            alert('Please fill out all required fields');
         }
 
-        let newAddress = new Address(addressItem);
-        //console.log("New address: " + newAddress);
-
-        let libraryItem:ILibraryDto = {
-            id: Math.floor(Math.random() * 10000),
-            name: library.Name,
-            address: newAddress,
-            createdDate: new Date(),
-            updatedDate: new Date()
-        }
-
-        console.log("Library item " + libraryItem.name);
-
-        let newLibrary = LibraryDto.fromJS(libraryItem);
-
-        console.log(newLibrary);
-
-        handleCreateLibrary(newLibrary);
-
-        setAddMode(false);
     }
 
     return(
         <Stack onSubmit={handleSubmit} horizontal tokens={{ childrenGap: 50}} styles={stackStyles}>
             <Stack {... columnProps}>
-                <TextField onChange={handleInputChange} name="Name" value={library.Name} label="Library Name" />
-                <TextField onChange={handleInputChange} name="LocationAddressLine1" value={library.LocationAddressLine1} label="Street Address" />
-                <TextField onChange={handleInputChange} name="LocationAddressLine2" value={library.LocationAddressLine2} label="Street Address 2" />
-                <TextField onChange={handleInputChange} name="LocationCity" value={library.LocationCity} label="City" />
+                <TextField 
+                    onChange={handleInputChange} 
+                    name="Name" value={library.Name} 
+                    label="Library Name" 
+                    required
+                />
+                <TextField 
+                    onChange={handleInputChange} 
+                    name="LocationAddressLine1" 
+                    value={library.LocationAddressLine1} 
+                    label="Street Address" 
+                    required
+                />
+                <TextField 
+                    onChange={handleInputChange} 
+                    name="LocationAddressLine2" 
+                    value={library.LocationAddressLine2} 
+                    label="Street Address 2" 
+                />
+                <TextField 
+                    onChange={handleInputChange}
+                    name="LocationCity" 
+                    value={library.LocationCity} 
+                    label="City" 
+                    required
+                />
             </Stack>   
 
             <Stack {... columnProps}>
-                <TextField onChange={handleInputChange} name="LocationStateProvince" value={library.LocationStateProvince} label="State" />
-                <TextField onChange={handleInputChange} name="LocationZipCode" value={library.LocationZipCode} label="Zip Code" />
-                <TextField  onChange={handleInputChange}name="LocationCountry" value={library.LocationCountry} label="Country" />
+                <TextField 
+                    onChange={handleInputChange} 
+                    name="LocationStateProvince" 
+                    value={library.LocationStateProvince} 
+                    label="State" 
+                    required
+                />
+                <TextField 
+                    onChange={handleInputChange} 
+                    name="LocationZipCode" 
+                    value={library.LocationZipCode} 
+                    label="Zip Code" 
+                    required
+                />
+                <TextField  
+                    onChange={handleInputChange}
+                    name="LocationCountry" 
+                    value={library.LocationCountry} 
+                    label="Country" 
+                    required
+                />
                 <Stack horizontal tokens={stackTokens}>
                     <PrimaryButton type="submit" onClick={handleSubmit} text="Submit" />
                     <DefaultButton onClick={() => {setAddMode(false)}} text="Cancel" />
