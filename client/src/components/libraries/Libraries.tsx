@@ -11,15 +11,22 @@ import {
 import { ILibraryDto, ApiClient, LibraryDto, Address } from '../../generated/backend';
 import LibraryForm from './LibraryForm';
 
+// Library component that contains all the Libraries data 
 const Libraries: React.FC = () => {
 
+    // Library state 
+    // Property data consists of libraries array
+    // And isFetching boolean
     const [data, setData] = useState({
         libraries: [] as ILibraryDto[],
         isFetching: false
     });
 
+    // Library state
+    // addMode property lets application know if user is adding a new library or not
     const [addMode, setAddMode] = useState(false);
 
+    // Initialize library keys
     const libraryKeys: ILibraryDto = {
         id: null,
         name: '',
@@ -28,6 +35,7 @@ const Libraries: React.FC = () => {
         updatedDate: null
     };
 
+    // Initialize columns
     const columns = Object.keys(libraryKeys).map(
         (key): IColumn => {
             return {
@@ -42,17 +50,22 @@ const Libraries: React.FC = () => {
             };
         }
     );
-
+    
+    // Handler function for creating and saving a new library
+    // Takes in a library object of type ILibraryDto
     const handleCreateLibrary = async(library: ILibraryDto) => {
 
-        
+            // Convert ILibraryDto to a LibraryDto to pass into API Client
             let libDto = LibraryDto.fromJS(library);
 
+            // Create new API Client and call the create library function
             const result = await new ApiClient(
                 process.env.REACT_APP_API_BASE
             ).libraries_CreateLibrary(libDto).then(res => {
                 console.log(res);
                 //return res
+
+                // Add the new library to the state libraries array
                 setData({libraries: [... data.libraries, libDto], isFetching: false});
                 //return res;
             }).catch(err => {
