@@ -13,10 +13,12 @@ using System.Threading.Tasks;
 
 namespace Microsoft.DSX.ProjectTemplate.Test.Library
 {
+    // Tests for library query handlers
     [TestClass]
     [TestCategory("Library")]
     public class LibraryQueryHandlerTest : UnitTest
     {
+        // Test valid get all query
         [TestMethod]
         public async Task GetAll_Valid_Success()
         {
@@ -46,6 +48,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Library
             });
         }
 
+        // Test get by id, id not found
         [DataTestMethod]
         [ExpectedException(typeof(EntityNotFoundException))]
         [DataRow(int.MaxValue)]
@@ -62,6 +65,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Library
             });
         }
 
+        // Test successful get by id
         [DataTestMethod]
         public async Task GetById_Valid_Success()
         {

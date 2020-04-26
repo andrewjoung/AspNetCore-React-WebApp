@@ -7,6 +7,8 @@ using Microsoft.DSX.ProjectTemplate.Data.DTOs;
 using System.Collections;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
+// API Controller for Library 
+// Currently includes routes for GET, POST, and DELETE
 namespace Microsoft.DSX.ProjectTemplate.API.Controllers
 {
     [Route("api/[controller]")]
@@ -16,28 +18,29 @@ namespace Microsoft.DSX.ProjectTemplate.API.Controllers
     {
         public LibrariesController(IMediator mediator) : base(mediator) { }
 
+        // Get all Libraries
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LibraryDto>>> GetAllLibrary()
         {
             return Ok(await Mediator.Send(new GetAllLibraryQuery()));
         }
 
+        // Get library by Id
         [HttpGet("{id}")]
         public async Task<ActionResult<LibraryDto>> GetLibrary(int id)
         {
             return Ok(await Mediator.Send(new GetLibraryByIdQuery() { LibraryId = id }));
         }
 
+        // Create new library
         [HttpPost]
         public async Task<ActionResult<LibraryDto>> CreateLibrary([FromBody] LibraryDto dto)
         {
-            //return Ok(await Mediator.Send(new CreateLibraryCommand() { Library = dto }));
-            //var library = await Mediator.Send(new CreateLibraryCommand() { Library = dto });
-            //return CreatedAtAction(nameof(GetLibraryByIdQuery), new { LibraryId = library.Id});
-
+            // Return CreateAtAction() instead of Ok() to recieve 201 status instead of 200
             return CreatedAtAction(nameof(CreateLibrary), await Mediator.Send(new CreateLibraryCommand() { Library = dto }));
         }
 
+        // Delete a specific library
         [HttpDelete("{id}")]
         public async Task<ActionResult<LibraryDto>> DeleteLibrary([FromRoute] int id)
         {

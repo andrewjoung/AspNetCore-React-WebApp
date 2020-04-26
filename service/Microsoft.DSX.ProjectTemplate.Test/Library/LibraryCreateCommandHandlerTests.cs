@@ -16,10 +16,12 @@ using System.Threading.Tasks;
 
 namespace Microsoft.DSX.ProjectTemplate.Test.Library
 {
+    // Test the create command handler
     [TestClass]
     [TestCategory("Library")]
     public class LibraryCreateCommandHandlerTests : UnitTest
     {
+        // Test missing name on create
         [DataTestMethod]
         [ExpectedException(typeof(BadRequestException))]
         [DataRow(null)]
@@ -40,6 +42,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Library
             });
         }
 
+        // Tests missing address on create
         [DataTestMethod]
         [ExpectedException(typeof(NullReferenceException))]
         public async Task Create_MissingAddress_NullReferenceException()
@@ -62,6 +65,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Library
             });
         }
 
+        // Tests is domain event is publishes
         [TestMethod]
         public async Task Create_Valid_PublishesLibraryCreatedDomainEvent()
         {
@@ -83,6 +87,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Library
             });
         }
 
+        // Private helper method that sets up new library DTO
         private LibraryDto SetupLibraryDto(string name = "")
         {
             var address = new Address()

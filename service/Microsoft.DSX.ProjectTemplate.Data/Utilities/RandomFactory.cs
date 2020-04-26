@@ -299,6 +299,7 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
             }
         }
 
+        // Retrieves a new random library name
         public static string GetLibraryName()
         {
             lock (_randLock)
@@ -306,6 +307,8 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
                 return _libraryNames[_random.Next(_libraryNames.Length)];
             }
         }
+
+        // Retrieves a random street address
         public static string GetStreetAddress()
         {
             lock (_randLock)
@@ -314,6 +317,7 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
             }
         }
 
+        // Retrieves a random city
         public static string GetCity()
         {
             lock (_randLock)
@@ -322,6 +326,7 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
             }
         }
 
+        // Retrieves a random state
         public static string GetState()
         {
             lock (_randLock)
@@ -330,6 +335,7 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
             }
         }
 
+        // Retrieves a random zip code
         public static string GetZip()
         {
             lock (_randLock)

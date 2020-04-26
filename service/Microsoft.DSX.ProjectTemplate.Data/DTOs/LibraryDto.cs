@@ -2,6 +2,8 @@
 
 namespace Microsoft.DSX.ProjectTemplate.Data.DTOs
 {
+    // A Library data transfer object
+    // Needs name of library and library address
     public class LibraryDto: AuditDto<int>
     {
         public string Name { get; set; }

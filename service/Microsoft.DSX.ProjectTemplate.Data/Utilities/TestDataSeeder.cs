@@ -21,6 +21,7 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
 
             SeedProjects(10);
 
+            // Seed 5 new libraries into the database
             SeedLibraries(5);
 
             _logger.LogInformation("Database seeding completed");
@@ -48,6 +49,7 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
             _dbContext.SaveChanges();
         }
 
+        // Method for seeding library data
         private void SeedLibraries(int entityCount)
         {
             for(int i = 0; i < entityCount; i++)

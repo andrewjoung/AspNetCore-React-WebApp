@@ -42,13 +42,16 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
             return project;
         }
 
+        // Retrieves a random library from the database
         public static Library GetRandomLibrary(ProjectTemplateDbContext database)
         {
             return database.Libraries.OrderBy(x => Guid.NewGuid()).First();
         }
 
+        // Create a new library
         public static Library CreateValidNewLibrary(ProjectTemplateDbContext database, string name ="")
         {
+            // Create a new random address
             var address = new Address()
             {
                 LocationAddressLine1 = RandomFactory.GetStreetAddress(),
@@ -68,13 +71,5 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
             return library;
         }
 
-        /*
-        public static Library CreateValidNewLibraryDto(ProjectTemplateDbContext database, IMapper mapper, string name = "")
-        {
-            var library = CreateValidNewLibrary(database, name);
-
-            return mapper.Map<LibraryDto>(library);
-        }
-        */
     }
 }

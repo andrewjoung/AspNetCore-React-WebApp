@@ -10,15 +10,19 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
+// Create library command 
 namespace Microsoft.DSX.ProjectTemplate.Command.Library
 {
+    // Class for all libraries
     public class GetAllLibraryQuery: IRequest<IEnumerable<LibraryDto>> {}
 
+    // CLass for specific library by id
     public class GetLibraryByIdQuery : IRequest<LibraryDto>
     {
         public int LibraryId { get; set; }
     }
 
+    // The query handler class
     public class LibraryQueryHandler : QueryHandlerBase,
         IRequestHandler<GetAllLibraryQuery, IEnumerable<LibraryDto>>,
         IRequestHandler<GetLibraryByIdQuery, LibraryDto>

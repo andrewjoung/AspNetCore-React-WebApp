@@ -8,13 +8,17 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
+// Delete Library command
 namespace Microsoft.DSX.ProjectTemplate.Command.Library
 {
+    // Delete Library Command class
+    // Includes LibraryId property of type int
     public class DeleteLibraryCommand: IRequest<bool>
     {
         public int LibraryId { get; set; }
     }
 
+    // The command handler class
     public class DeleteLibraryCommandHandler : CommandHandlerBase,
             IRequestHandler<DeleteLibraryCommand, bool>
     {
@@ -27,6 +31,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Library
         {
         }
 
+        // Handle function for delete command
         public async Task<bool> Handle(DeleteLibraryCommand request, CancellationToken cancellationToken)
         {
             if(request.LibraryId <= 0)

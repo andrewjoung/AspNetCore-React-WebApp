@@ -11,17 +11,21 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System.Threading;
 using System.Threading.Tasks;
 
-
+// Create Library commands
 namespace Microsoft.DSX.ProjectTemplate.Command.Library
 {
+    // CreateLibraryCommand class
+    // Has Library property of type LibraryDto
     public class CreateLibraryCommand : IRequest<LibraryDto>
     {
         public LibraryDto Library { get; set; }
     }
 
+    // The CreateLibraryCommandHandler
     public class CreateLibraryCommandHandler : CommandHandlerBase,
         IRequestHandler<CreateLibraryCommand, LibraryDto>
     {
+        // Handler Constructor
         public CreateLibraryCommandHandler(
         IMediator mediator,
         ProjectTemplateDbContext database,
@@ -31,6 +35,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Library
         {
         }
 
+        // Handles create library command
         public async Task<LibraryDto> Handle(CreateLibraryCommand request, CancellationToken cancellationToken)
         {
             if(request.Library == null)

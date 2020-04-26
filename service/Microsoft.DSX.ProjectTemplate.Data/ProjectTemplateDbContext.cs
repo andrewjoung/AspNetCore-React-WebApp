@@ -119,50 +119,7 @@ namespace Microsoft.DSX.ProjectTemplate.Data
                     }
                 );
 
-            /*
-            modelBuilder.Entity<Library>()
-                .HasData(
-                    new Library()
-                    {
-                        Id = 1,
-                        Name = "Bellevue Library",
-                        Address = new Address()
-                        {
-                            LocationAddressLine1 = "1111 110th Ave NE",
-                            LocationStateProvince = "WA",
-                            LocationCity = "Bellevue",
-                            LocationZipCode = "98004",
-                            LocationCountry = "US"
-                        }
-                    },
-                    new Library()
-                    {
-                        Id = 2,
-                        Name = "Newcastle Library",
-                        Address = new Address()
-                        {
-                            LocationAddressLine1 = "12901 Newcastle Way",
-                            LocationStateProvince = "WA",
-                            LocationCity = "Newcastle",
-                            LocationZipCode = "98056",
-                            LocationCountry = "US"
-                        }
-                    },
-                    new Library()
-                    {
-                        Id = 3,
-                        Name = "Suzzallo Library",
-                        Address = new Address()
-                        {
-                            LocationAddressLine1 = "4000 15th Ave NE",
-                            LocationStateProvince = "WA",
-                            LocationCity = "Seattle",
-                            LocationZipCode = "98195",
-                            LocationCountry = "US"
-                        }
-                    }
-                );
-                */
+            // Seed database with new entity
             modelBuilder.Entity<Library>(b =>
             {
                 b.HasData(
@@ -183,6 +140,7 @@ namespace Microsoft.DSX.ProjectTemplate.Data
                 });
             });
 
+            // Seed database with new entity
             modelBuilder.Entity<Library>(b =>
             {
                 b.HasData(

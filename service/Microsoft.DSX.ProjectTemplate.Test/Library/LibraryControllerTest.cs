@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace Microsoft.DSX.ProjectTemplate.Test.Library
 {
+    // Test for library controller
     [TestClass]
     [TestCategory("Library")]
     public class LibraryControllerTest : IntegrationTest
     {
+        // Test get all query 
         [TestMethod]
         public async Task GetAll_Valid_Success()
         {
@@ -27,6 +29,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Library
             result.Should().HaveCountGreaterThan(0);
         }
 
+        // Test get by id query
         [DataTestMethod]
         [DataRow(1)]
         public async Task GetById_Valid_Success(int libraryId)
@@ -44,6 +47,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Library
             result.IsValid().Should().BeTrue();
         }
 
+        // Test create new library
         [TestMethod]
         public async Task Create_Valid_Success()
         {
@@ -66,6 +70,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Library
             result.Address.LocationCountry.Should().Be(dto.Address.LocationCountry);
         }
 
+        // Test delete
         [DataTestMethod]
         [DataRow(2)]
         public async Task Delete_Valid_Success(int libraryId)
@@ -81,6 +86,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Library
             result.Should().BeTrue();
         }
 
+        // Private helper method that sets up a new library DTO
         private LibraryDto SetupLibraryDto()
         {
             var address = new Address()
