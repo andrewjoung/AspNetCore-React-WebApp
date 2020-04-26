@@ -14,12 +14,12 @@ namespace Microsoft.DSX.ProjectTemplate.Data.DTOs
                 ModelState.AddModelError(nameof(Name), $"{nameof(Name)} cannot be null or empty.");
             }
 
-            /*
+            
             if(string.IsNullOrWhiteSpace(Address.ToString()))
             {
                 ModelState.AddModelError(nameof(Address), $"{nameof(Address)} cannot be null or empty");
             }
-            */
+            
             return ModelState.IsValid;
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.DSX.ProjectTemplate.Data.Models;
+using System;
 using System.Linq;
 
 namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
@@ -52,6 +53,127 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
 
         private const string _chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+        private static readonly string[] _libraryNames = new string[]
+        {
+            "Forest Grove Library",
+            "Ocean View Library",
+            "Mountain Cliff Library",
+            "Bird Wing Library",
+            "Yellow Jacket Library",
+            "Elgin Library",
+            "Green Forest Library",
+            "Angler Way Library",
+            "Rainbow Trout Library",
+            "Washington Road Library",
+            "Black Cherry Library",
+            "Green Apple Road Library",
+            "Salty Spoon Library",
+            "Long Road Library",
+            "Desert Sun Library"
+        };
+
+        private static readonly string[] _locationAddress1 = new string[]
+        {
+            "1242 Maple Dr SE",
+            "1141 Forrest Drive N",
+            "2130 Golf Way S",
+            "982 Bowling Lane Ave",
+            "9759 Red Ridge Ave NW",
+            "9501 Ocean Way",
+            "4958 Cliff Side Blvd"
+        };
+
+        private static readonly string[] _locationCity = new string[]
+        {
+            "Cloverhill",
+            "Bellevue",
+            "Sammammish",
+            "Issaquah",
+            "Algonquin",
+            "Lake in the Hills",
+            "Crystal Lake",
+            "Everett",
+            "Lynnwood",
+            "Schamburg"
+        };
+
+        private static readonly string[] _states = new string[]
+        {
+            "AL",
+            "AK",
+            "AS",
+            "AZ",
+            "AR",
+            "CA",
+            "CO",
+            "CT",
+            "DE",
+            "DC",
+            "FL",
+            "GA",
+            "GU",
+            "HI",
+            "ID",
+            "IL",
+            "IN",
+            "IA",
+            "KS",
+            "KY",
+            "LA",
+            "ME",
+            "MD",
+            "MH",
+            "MA",
+            "MI",
+            "FM",
+            "MN",
+            "MS",
+            "MO",
+            "MT",
+            "NE",
+            "NV",
+            "NH",
+            "NJ",
+            "NM",
+            "NY",
+            "NC",
+            "ND",
+            "OH",
+            "OK",
+            "OR",
+            "PA",
+            "RI",
+            "SC",
+            "SD",
+            "TN",
+            "TX",
+            "UT",
+            "VT",
+            "VA",
+            "VI",
+            "WA",
+            "WV",
+            "WI",
+            "WY"
+        };
+
+        private static readonly string[] _zipCodes = new string[]
+        {
+            "94859",
+            "94718",
+            "19959",
+            "94727",
+            "29581",
+            "39591",
+            "30591",
+            "95001",
+            "30301",
+            "39501",
+            "39301",
+            "39359",
+            "90159"
+        };
+        
         private static readonly string[] _codeNames = new string[]
             {
                 "Algiers",
@@ -174,6 +296,45 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
             lock (_randLock)
             {
                 return _companyNames[_random.Next(0, _companyNames.Length)];
+            }
+        }
+
+        public static string GetLibraryName()
+        {
+            lock (_randLock)
+            {
+                return _libraryNames[_random.Next(_libraryNames.Length)];
+            }
+        }
+        public static string GetStreetAddress()
+        {
+            lock (_randLock)
+            {
+                return _locationAddress1[_random.Next(_locationAddress1.Length)];
+            }
+        }
+
+        public static string GetCity()
+        {
+            lock (_randLock)
+            {
+                return _locationCity[_random.Next(_locationCity.Length)];
+            }
+        }
+
+        public static string GetState()
+        {
+            lock (_randLock)
+            {
+                return _states[_random.Next(_states.Length)];
+            }
+        }
+
+        public static string GetZip()
+        {
+            lock (_randLock)
+            {
+                return _zipCodes[_random.Next(_zipCodes.Length)];
             }
         }
     }

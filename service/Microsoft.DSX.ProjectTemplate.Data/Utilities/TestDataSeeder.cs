@@ -21,6 +21,8 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
 
             SeedProjects(10);
 
+            SeedLibraries(5);
+
             _logger.LogInformation("Database seeding completed");
         }
 
@@ -41,6 +43,17 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
             {
                 var newProject = SeedHelper.CreateValidNewProject(_dbContext);
                 _dbContext.Projects.Add(newProject);
+            }
+
+            _dbContext.SaveChanges();
+        }
+
+        private void SeedLibraries(int entityCount)
+        {
+            for(int i = 0; i < entityCount; i++)
+            {
+                var newLibrary = SeedHelper.CreateValidNewLibrary(_dbContext);
+                _dbContext.Libraries.Add(newLibrary);
             }
 
             _dbContext.SaveChanges();

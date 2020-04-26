@@ -41,5 +41,40 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
 
             return project;
         }
+
+        public static Library GetRandomLibrary(ProjectTemplateDbContext database)
+        {
+            return database.Libraries.OrderBy(x => Guid.NewGuid()).First();
+        }
+
+        public static Library CreateValidNewLibrary(ProjectTemplateDbContext database, string name ="")
+        {
+            var address = new Address()
+            {
+                LocationAddressLine1 = RandomFactory.GetStreetAddress(),
+                LocationAddressLine2 = "",
+                LocationCity = RandomFactory.GetCity(),
+                LocationStateProvince = RandomFactory.GetState(),
+                LocationZipCode = RandomFactory.GetZip(),
+                LocationCountry = "US"
+            };
+
+            var library = new Library()
+            {
+                Name = RandomFactory.GetLibraryName(),
+                Address = address
+            };
+
+            return library;
+        }
+
+        /*
+        public static Library CreateValidNewLibraryDto(ProjectTemplateDbContext database, IMapper mapper, string name = "")
+        {
+            var library = CreateValidNewLibrary(database, name);
+
+            return mapper.Map<LibraryDto>(library);
+        }
+        */
     }
 }
