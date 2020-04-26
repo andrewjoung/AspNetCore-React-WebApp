@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.DSX.ProjectTemplate.Command.Library;
 using Microsoft.DSX.ProjectTemplate.Data.DTOs;
 using System.Collections;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Microsoft.DSX.ProjectTemplate.API.Controllers
 {
@@ -30,7 +31,11 @@ namespace Microsoft.DSX.ProjectTemplate.API.Controllers
         [HttpPost]
         public async Task<ActionResult<LibraryDto>> CreateLibrary([FromBody] LibraryDto dto)
         {
-            return Ok(await Mediator.Send(new CreateLibraryCommand() { Library = dto }));
+            //return Ok(await Mediator.Send(new CreateLibraryCommand() { Library = dto }));
+            //var library = await Mediator.Send(new CreateLibraryCommand() { Library = dto });
+            //return CreatedAtAction(nameof(GetLibraryByIdQuery), new { LibraryId = library.Id});
+
+            return CreatedAtAction(nameof(CreateLibrary), await Mediator.Send(new CreateLibraryCommand() { Library = dto }));
         }
 
         [HttpDelete("{id}")]
