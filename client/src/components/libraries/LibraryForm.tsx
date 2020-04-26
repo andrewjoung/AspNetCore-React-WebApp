@@ -49,7 +49,7 @@ const LibraryForm: React.FC<IProps> = ({setAddMode, handleCreateLibrary}) => {
     }
 
     // Function that will handle the submit event when user clicks submit button
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         //console.log("Submitted");
         //console.log(library);
 

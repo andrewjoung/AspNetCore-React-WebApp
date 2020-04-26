@@ -69,6 +69,7 @@ const Libraries: React.FC = () => {
                 setData({libraries: [... data.libraries, libDto], isFetching: false});
                 //return res;
             }).catch(err => {
+                console.log(err);
                 return err;
             })
 
