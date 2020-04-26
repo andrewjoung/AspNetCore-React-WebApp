@@ -5,10 +5,9 @@ import {
     DetailsList,
     DetailsListLayoutMode,
     SpinnerSize,
-    PrimaryButton,
     DefaultButton
 } from 'office-ui-fabric-react';
-import { ILibraryDto, ApiClient, LibraryDto, Address } from '../../generated/backend';
+import { ILibraryDto, ApiClient, LibraryDto } from '../../generated/backend';
 import LibraryForm from './LibraryForm';
 
 // Library component that contains all the Libraries data 
@@ -62,13 +61,15 @@ const Libraries: React.FC = () => {
             const result = await new ApiClient(
                 process.env.REACT_APP_API_BASE
             ).libraries_CreateLibrary(libDto).then(res => {
-                console.log(res);
+                //console.log("result");
+                //console.log(res);
                 //return res
 
                 // Add the new library to the state libraries array
-                setData({libraries: [... data.libraries, libDto], isFetching: false});
+                setData({libraries: [...data.libraries, res], isFetching: false});
                 //return res;
             }).catch(err => {
+                alert('You have entered an invalid library or the library is already listed. Please try again.')
                 console.log(err);
                 return err;
             })
@@ -84,7 +85,7 @@ const Libraries: React.FC = () => {
                     process.env.REACT_APP_API_BASE
                 ).libraries_GetAllLibrary();
                 
-                console.log("results: " + result); 
+                //console.log("results: " + result); 
 
                 setData({ libraries: result, isFetching: false});
             } catch (e) {
@@ -94,7 +95,7 @@ const Libraries: React.FC = () => {
         }
 
         fetchData();
-        console.log(data.libraries);
+        //console.log(data.libraries);
     }, []);
 
 
