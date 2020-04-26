@@ -8,7 +8,6 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-// Delete Library command
 namespace Microsoft.DSX.ProjectTemplate.Command.Library
 {
     // Delete Library Command class
@@ -32,6 +31,8 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Library
         }
 
         // Handle function for delete command
+        // Throws bad request exceptions for invalid requests
+        // Returns true when library is deleted
         public async Task<bool> Handle(DeleteLibraryCommand request, CancellationToken cancellationToken)
         {
             if(request.LibraryId <= 0)

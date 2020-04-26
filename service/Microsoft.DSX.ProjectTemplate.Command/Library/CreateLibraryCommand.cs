@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System.Threading;
 using System.Threading.Tasks;
 
-// Create Library commands
 namespace Microsoft.DSX.ProjectTemplate.Command.Library
 {
     // CreateLibraryCommand class
@@ -36,6 +35,9 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Library
         }
 
         // Handles create library command
+        // Takes in the request and a cancellation token
+        // Throws exceptions for bad request
+        // Returns a library dto 
         public async Task<LibraryDto> Handle(CreateLibraryCommand request, CancellationToken cancellationToken)
         {
             if(request.Library == null)

@@ -10,7 +10,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-// Create library command 
 namespace Microsoft.DSX.ProjectTemplate.Command.Library
 {
     // Class for all libraries
@@ -27,6 +26,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Library
         IRequestHandler<GetAllLibraryQuery, IEnumerable<LibraryDto>>,
         IRequestHandler<GetLibraryByIdQuery, LibraryDto>
     {
+        // Query handler constructor
         public LibraryQueryHandler(
             IMediator mediator,
             ProjectTemplateDbContext database,
@@ -38,6 +38,8 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Library
         }
 
         // Get all Libraries
+        // Takes in the request and cancellation token
+        // Returns a list of all Libraries 
         public async Task<IEnumerable<LibraryDto>> Handle(GetAllLibraryQuery request, CancellationToken cancellationToken)
         {
         
@@ -48,6 +50,9 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Library
         }
 
         // Get by ID
+        // Takes in request and cancellation token
+        // If it is not found, throws entity not found exception
+        // Returns the Library
         public async Task<LibraryDto> Handle(GetLibraryByIdQuery request, CancellationToken cancellationToken)
         {
             if(request.LibraryId.ToString().Length == 0)

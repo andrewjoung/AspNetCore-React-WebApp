@@ -11,10 +11,10 @@ interface IProps {
 }
 
 // Component for a form to create a new library entry
-// Takes in two functions - setAddMode and handleCreateLibrary
+// Takes in two functions - setAddMode and handleCreateLibrary as props
 const LibraryForm: React.FC<IProps> = ({setAddMode, handleCreateLibrary}) => {
 
-    // To initial Fluent UI stack components 
+    // To initialize Fluent UI stack components 
     const stackStyles: Partial<IStackStyles> = { root: { width: 650 }};
     const columnProps: Partial<IStackProps> = {
         tokens: { childrenGap: 15 },
